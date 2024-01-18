@@ -1,0 +1,56 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item">
+            <a routerLink="/contact-list">Contacts</a>
+        </li>
+        <li *ngIf="contact" class="breadcrumb-item active">{{ contact.name }}</li>
+    </ol>
+</nav>
+
+<div *ngIf="!loading">
+    <p>Loading...</p>
+</div>
+
+<ng-container *ngIf="contact">
+    <div class="row">
+        <div class="col-xs-12 col-md-3 mb-3">
+            <div>
+                <a routerLink="/contact-list" class="btn btn-outline-primary">
+                    <i class="fa fa-chevron-left mr-2"></i>
+                    Back to All Contacts
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Name: </strong> {{ contact.name }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email: </strong> {{ contact.email }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phone: </strong> {{ contact.phone }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Company: </strong> {{ contact.company.name }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Address: </strong> {{ contact.address.street }}, {{ contact.address.suite }}, {{
+                            contact.address.city }}, {{ contact.address.zipcode }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Website: </strong>
+                            <a [href]="'http://' + contact.website" target="_blank">
+                                {{ contact.website }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
